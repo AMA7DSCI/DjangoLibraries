@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {{ library.name }} - {{ block.super }}
+{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Libraries</a></li>
+  <li class="breadcrumb-item active">{{ library.name }}</li>
+{% endblock %}
+
+{% block content %}
+  <div class="mb-4">
+    <a href="{% url 'new_book' library.pk %}" class="btn btn-primary">New book</a>
+    <a href="{% url 'delete_library' library.pk %}" class="btn btn-primary">Delete Library</a>
+  </div>
+
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Title</th>
+        <th>Author(s)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in allbooks %}
+        <tr>
+          <td>
+            <a href="{% url 'book_detail' library.pk book.pk %}">{{book.name}}</a>
+          </td>
+          <td class="align-middle">{{book.authors}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

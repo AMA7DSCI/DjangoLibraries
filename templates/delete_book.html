@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Library</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'library_books' library.pk %}">{{library.name }}</a></li>
+{% endblock %}
+
+{% block content %}
+
+<p><b>Book Deleted!</b></p>
+
+{% endblock %}

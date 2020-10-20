@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}{{ topic.subject }}{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Library</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'library_books' book.library.pk %}">{{ book.library.name }}</a></li>
+  <li class="breadcrumb-item active">{{ book.name }}</li>
+{% endblock %}
+
+{% block content %}
+  <div class="mb-4">
+    <a href="{% url 'edit_book' book.library.pk book.pk %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'delete_book' book.library.pk book.pk %}" class="btn btn-primary">Delete Book</a>
+  </div>
+
+  <p><b>Title:</b> {{book.name}}</p>
+  <p><b>Author(s):</b> {{book.authors}}</p>
+  <p><b>Notes:</b> {{book.notes}}</p>
+{% endblock %}
